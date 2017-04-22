@@ -1,0 +1,170 @@
+<html><head></head><body><div class="apidocDiv">
+<style>
+/*csslint
+*/
+.apidocDiv {
+    background: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.apidocDiv a[href] {
+    color: #33f;
+    font-weight: bold;
+    text-decoration: none;
+}
+.apidocDiv a[href]:hover {
+    text-decoration: underline;
+}
+.apidocCodeCommentSpan {
+    background: #bbf;
+    color: #000;
+    display: block;
+}
+.apidocCodeKeywordSpan {
+    color: #d00;
+    font-weight: bold;
+}
+.apidocCodePre {
+    background: #eef;
+    border: 1px solid;
+    color: #777;
+    padding: 5px;
+    white-space: pre-wrap;
+}
+.apidocFooterDiv {
+    margin-top: 20px;
+    text-align: center;
+}
+.apidocModuleLi {
+    margin-top: 10px;
+}
+.apidocSectionDiv {
+    border-top: 1px solid;
+    margin-top: 20px;
+}
+.apidocSignatureSpan {
+    color: #777;
+    font-weight: bold;
+}
+</style>
+<h1>api documentation for
+    <a href="https://github.com/flatiron/revalidator">revalidator (v0.3.1)</a>
+</h1>
+<h4>A cross-browser / node.js validator powered by JSON Schema</h4>
+<div class="apidocSectionDiv"><a href="#apidoc.tableOfContents" id="apidoc.tableOfContents"><h1>table of contents</h1></a><ol>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.revalidator">module revalidator</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.revalidator.mixin">
+            function <span class="apidocSignatureSpan">revalidator.</span>mixin
+            <span class="apidocSignatureSpan">(obj)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.revalidator.validate">
+            function <span class="apidocSignatureSpan">revalidator.</span>validate
+            <span class="apidocSignatureSpan">(object, schema, options)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+</ol></div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.revalidator" id="apidoc.module.revalidator">module revalidator</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.revalidator.mixin" id="apidoc.element.revalidator.mixin">
+        function <span class="apidocSignatureSpan">revalidator.</span>mixin
+        <span class="apidocSignatureSpan">(obj)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function mixin(obj) {
+  var sources = Array.prototype.slice.call(arguments, 1);
+  while (sources.length) {
+    var source = sources.shift();
+    if (!source) { continue }
+
+    if (typeof(source) !== 'object') {
+      throw new TypeError('mixin non-object');
+    }
+
+    for (var p in source) {
+      if (source.hasOwnProperty(p)) {
+        obj[p] = source[p];
+      }
+    }
+  }
+
+  return obj;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.revalidator.validate" id="apidoc.element.revalidator.validate">
+        function <span class="apidocSignatureSpan">revalidator.</span>validate
+        <span class="apidocSignatureSpan">(object, schema, options)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function validate(object, schema, options) {
+  options = mixin({}, validate.defaults, options);
+  var errors = [];
+
+  if (schema.type === 'array')
+    validateProperty(object, object, '', schema, options, errors);
+  else
+    validateObject(object, schema, options, errors);
+
+  //
+  // TODO: self-described validation
+  // if (! options.selfDescribing) { ... }
+  //
+
+  return {
+    valid: !(errors.length),
+    errors: errors
+  };
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+
+# revalidator [![Build Status](https://secure.travis-ci.org/flatiron/revalidator.png)](http://travis-ci.org/flatiron/revalidator
+)
+
+A cross-browser / node.js validator with [JSONSchema](http://tools.ietf.org/html/draft-zyp-json-schema-04) compatibility as the
+primary goal.
+
+## Example
+The core of `revalidator` is simple and succinct: `revalidator.<span class="apidocCodeKeywordSpan">validate</span>(obj, schema)`:
+
+``` js
+var revalidator = require('revalidator');
+
+console.dir(revalidator.validate(someObject, {
+  properties: {
+    url: {
+...</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocFooterDiv">
+    [ this document was created with
+    <a href="https://github.com/kaizhu256/node-utility2" target="_blank">utility2</a>
+    ]
+</div>
+</div>
+</body></html>
